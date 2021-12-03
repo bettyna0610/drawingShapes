@@ -1,12 +1,11 @@
 import React, {useRef, useState, useEffect} from "react";
 import {Image} from './Image';
 import {Draw} from './Draw';
-import {List} from './List'
+import {List} from './List';
 
 export const Upload = () => {
     const [image, setImage] = useState();
     const [preview, setPreview] = useState();
-    const [list, setList] = useState();
     const fileInputRef = useRef();
 
     useEffect(() => {
@@ -19,7 +18,6 @@ export const Upload = () => {
         } else {
             setPreview(null)
         }
-        console.log(preview)
     }, [image])
 
     
@@ -37,16 +35,9 @@ export const Upload = () => {
         }
     }
 
-    const addInput = (input) => {
-        const listArray = [];
-        listArray.push(input);
-        setList(listArray);
-        console.log(listArray)
-    }
-
+    
     return (
         <div>
-            <Draw addInput={addInput}/>
             <form>
                 <button onClick={submitImage}>Upload Image</button>
                 <input type="file" 
@@ -56,7 +47,7 @@ export const Upload = () => {
                 accept="image/*"/>
             </form>
             <div className="flex">
-            <List list={list}/>
+            <List />
             <Image source={preview}/>
             </div>
         </div>
